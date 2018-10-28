@@ -4,8 +4,8 @@
 void setup() {
 	Serial.begin(9600);
 
-	Astr s = Astr(10);
-	Serial.println(s.length());
+	Astr s = Astr("Hello, World");
+	Serial.println(s.charAt(1));
 }
 
 void loop() {}
