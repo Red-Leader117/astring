@@ -1,13 +1,7 @@
 #ifndef ASTRING_H
 #define ASTRING_H
 
-#define DEBUG 0
-
 #include "string.h"
-
-#ifdef DEBUG
-#include <Arduino.h>
-#endif
 
 class Astr {
 private:
