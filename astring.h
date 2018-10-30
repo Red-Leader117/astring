@@ -1,7 +1,7 @@
 #ifndef ASTRING_H
 #define ASTRING_H
 
-#define DEBUG 1
+#define DEBUG 0
 
 #include "string.h"
 
@@ -11,7 +11,7 @@
 
 class Astr {
 private:
-    int *m_length = nullptr;
+    int *m_length = new int;
     char *m_string = nullptr;
 
 public:
@@ -19,7 +19,8 @@ public:
     ~Astr();
 
     char charAt(const int &n) const;
-    int length() const { return *m_length; }
+    int length() const;
+
 };
 
 #endif
