@@ -11,9 +11,11 @@ void setup() {
 
 	Serial.begin(9600);
 
-	// charAt();
 	Astr s1 = Astr("Hello, World");
 
+	// Length
+	testCond("length()", s1.length() == 12);
+	testCond("lengthT()", s1.lengthT() == 13);
 }
 
 void loop() {}

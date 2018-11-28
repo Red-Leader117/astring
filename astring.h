@@ -30,6 +30,15 @@ public:
     Astr(const char* string);
     
     ~Astr();
+    
+    int length(){ return *m_length; }
+
+    // Returns length including terminator
+    int lengthT(){ return *m_lengthT; }
+
+    // Synonyms for length
+    int size(){ return length(); }
+    int sizeT(){ return lengthT(); }
 };
 
 #endif
