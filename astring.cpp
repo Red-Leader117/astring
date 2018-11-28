@@ -1,31 +1,38 @@
 #include "astring.h"
 
-Astr::Astr(const char *string){
+Astr::Astr(const char* string)
+{
     *m_length = strlen(string);
-    m_string = new char[*m_length + 1];
-    for(int index = 0; index < (*m_length - 1); ++index){
-        m_string[index] = string[index];
-    }
-    m_string[*m_length] = '\0';
-}
+    *m_lengthT = *m_length + 1;
 
+    *m_numBlocks = (*m_lengthT / StrBLock::BLOCK_SIZE) + 1;
+    m_ptrs = new StrBLock* [*m_numBlocks];
+
+    int currentBlock = 0;
+    int currentBlockIndex = 0;
+    m_ptrs[currentBlock] = new StrBLock();
+    for (int i = 0; i < *m_lengthT; ++i){
+        
+        if(currentBlockIndex == StrBLock::BLOCK_SIZE){
+            ++currentBlock;
+            m_ptrs[currentBlock] = new StrBLock();
+            currentBlockIndex = 0;
+        }
+        
+        m_ptrs[currentBlock]->set(string[i], currentBlockIndex);
+        
+
+        ++currentBlockIndex;
+    }
+}
+    
 Astr::~Astr(){
-    delete m_length;
-    delete[] m_string;
-
-    // Shouldn't need to do this, but just cover ourselves
-    m_length = nullptr;
-    m_string = nullptr;
-}
-
-char Astr::charAt(const int &n) const {
-    if (n < 0 || n >= *m_length - 1){
-        return '\0';
-    } else {
-        return *(m_string + n);
+    for (int i = 0; i < *m_numBlocks; ++i){
+        delete m_ptrs[i];
+        m_ptrs[i] = nullptr;
     }
-}
-
-int Astr::length() const {
-    return *m_length;
+    delete [] m_ptrs;
+    delete m_length;
+    delete m_lengthT;
+    delete m_numBlocks;
 }
