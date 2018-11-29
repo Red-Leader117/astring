@@ -16,6 +16,10 @@ public:
     void set(char chr, int &index){
         m_block[index] = chr;
     }
+
+    char get(int &index){
+        return m_block[index];
+    }
 };
 
 class Astr
@@ -31,14 +35,16 @@ public:
     
     ~Astr();
     
-    int length(){ return *m_length; }
+    int length() const { return *m_length; }
 
     // Returns length including terminator
-    int lengthT(){ return *m_lengthT; }
+    int lengthT() const { return *m_lengthT; }
 
     // Synonyms for length
     int size(){ return length(); }
     int sizeT(){ return lengthT(); }
+    
+    void c_str(char* buffer, int nChars);
 };
 
 #endif

@@ -16,6 +16,18 @@ void setup() {
 	// Length
 	testCond("length()", s1.length() == 12);
 	testCond("lengthT()", s1.lengthT() == 13);
+
+	// c_str
+	{
+		char testBuffer[s1.lengthT()];
+		s1.c_str(testBuffer, s1.lengthT());
+		testCond("c_str()", testBuffer == "Hello, World");
+	}
+	{
+		char testBuffer[5];
+		s1.c_str(testBuffer, 5);
+		testCond("c_str()", testBuffer == "Hello");
+	}
 }
 
 void loop() {}

@@ -36,3 +36,23 @@ Astr::~Astr(){
     delete m_lengthT;
     delete m_numBlocks;
 }
+    
+void Astr::c_str(char* buffer, int nChars){
+
+    int currentBlock = 0;
+    int currentBlockIndex = 0;
+
+    for (int i = 0; i < nChars; ++i){
+
+        if(currentBlockIndex > StrBLock::BLOCK_SIZE){
+            ++currentBlock;
+            currentBlockIndex = 0;
+        }
+
+        buffer[i] = m_ptrs[currentBlock]->get(currentBlockIndex);
+
+        ++currentBlockIndex;
+    }
+
+    buffer[nChars] = '\0';
+}
