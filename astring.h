@@ -16,6 +16,10 @@ public:
     void set(char chr, int &index){
         m_block[index] = chr;
     }
+
+    char get(int &index){
+        return m_block[index];
+    }
 };
 
 class Astr
@@ -30,6 +34,8 @@ public:
     Astr(const char* string);
     
     ~Astr();
+    
+    char charAt(int index);
     
     int length(){ return *m_length; }
 

@@ -16,6 +16,9 @@ void setup() {
 	// Length
 	testCond("length()", s1.length() == 12);
 	testCond("lengthT()", s1.lengthT() == 13);
+
+	// charAt
+	testCond("charAt()", s1.charAt(1) == 'e');
 }
 
 void loop() {}

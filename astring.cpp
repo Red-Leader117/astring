@@ -36,3 +36,15 @@ Astr::~Astr(){
     delete m_lengthT;
     delete m_numBlocks;
 }
+
+char Astr::charAt(int index)
+{
+    if(index >= *m_length){
+        return '\0';
+    } else {
+        int block = index / StrBLock::BLOCK_SIZE;
+        int blockIndex = index - (StrBLock::BLOCK_SIZE * block);
+
+        return m_ptrs[block]->get(blockIndex);
+    }
+}
